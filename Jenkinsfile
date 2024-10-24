@@ -1,6 +1,6 @@
 pipeline {
    environment {
-     git_url = "https://github.com/salilkul/tomcat-project.git"
+     git_url = "https://github.com/adahmo/tomcat-project.git"
      git_branch = "master"
    }
 
@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Pull Source') {
       steps {
-        git credentialsId: 'ff6d7224-fa35-465b-a41b-93ff8a6d2663', branch: "${git_branch}", url: "${git_url}"
+        git credentialsId: 'b1c07525-6ca1-44e2-aa83-33b06a4b2ebb', branch: "${git_branch}", url: "${git_url}"
        
       }
      }
