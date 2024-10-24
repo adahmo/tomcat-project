@@ -27,16 +27,18 @@ pipeline {
              }
         stage('Docker image push') {
            steps {
-                 withCredentials([usernamePassword(credentialsId: 'b2674f2b-668e-4af0-9b33-dc80948a6230', passwordVariable: 'Password', usernameVariable: 'Username')]) {
+                 withCredentials([usernamePassword(credentialsId: 'dc993465-44a6-4b28-86c2-56e9412bf187', passwordVariable: 'Password', usernameVariable: 'Username')]) {
                  sh "sudo docker login -u ${env.Username} -p ${env.Password}"
-                 sh "sudo docker image tag mytomcat-image salilkul87/mytomcat-image:test"
-                 sh "sudo docker image push salilkul87/mytomcat-image:test" 
+                 sh "sudo docker image tag mytomcat-image adamumj/mytomcat-image:test"
+                 sh "sudo docker image push adamumj/mytomcat-image:test" 
                } 
              }  
           }
       stage('Deploy app') {
          steps {
-            sh 'kubectl apply -f tomcat-app.yaml'
+            // sh 'kubectl apply -f tomcat-app.yaml'
+            sh 'docker run -d --name mycont adamumj/mytomcat-image:test'
+            
          }
       }
     }
