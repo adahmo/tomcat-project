@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Pull Source') {
       steps {
-        git credentialsId: 'b1c07525-6ca1-44e2-aa83-33b06a4b2ebb', branch: "${git_branch}", url: "${git_url}"
+        git credentialsId: 'dfb0a627-ed77-4e0d-adf8-ada326a74efc', branch: "${git_branch}", url: "${git_url}"
        
       }
      }
@@ -27,7 +27,7 @@ pipeline {
              }
         stage('Docker image push') {
            steps {
-                 withCredentials([usernamePassword(credentialsId: 'dc993465-44a6-4b28-86c2-56e9412bf187', passwordVariable: 'Password', usernameVariable: 'Username')]) {
+                 withCredentials([usernamePassword(credentialsId: '9a057081-4008-40a0-8757-1dd9d3a5b511', passwordVariable: 'Password', usernameVariable: 'Username')]) {
                  sh "sudo docker login -u ${env.Username} -p ${env.Password}"
                  sh "sudo docker image tag mytomcat-image adamumj/mytomcat-image:test"
                  sh "sudo docker image push adamumj/mytomcat-image:test" 
@@ -36,8 +36,9 @@ pipeline {
           }
       stage('Deploy app') {
          steps {
+               sh 'ls -ltr'
             // sh 'kubectl apply -f tomcat-app.yaml'
-            sh 'docker run -d --name mycont adamumj/mytomcat-image:test'
+            // sh 'docker run -d --name mycont adamumj/mytomcat-image:test'
             
          }
       }
