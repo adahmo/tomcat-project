@@ -37,8 +37,8 @@ pipeline {
       stage('Deploy app') {
          steps {
                sh 'ls -ltr'
-               sh 'kubectl apply -f tomcat-app.yaml'
-            // sh 'docker run -d --name mycont adamumj/mytomcat-image:test'
+            // sh 'kubectl apply -f tomcat-app.yaml'
+               sh 'docker run -d --name mycont adamumj/mytomcat-image:test'
             
          }
       }
